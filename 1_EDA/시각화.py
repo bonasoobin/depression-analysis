@@ -103,11 +103,14 @@ max    32947.000000    58.800000  910814.000000    39.800000    84.60000  564132
 
 '''
 
-# 지역별 변수 시각화
-final_city = final.groupby('citynum').mean('depression')
-final_city.head(30)
-plt.hist(final_city)
+
+# 시도별 우울증지수 시각화 (바 그래프)
+depression_index = final.groupby('city')['depression'].mean().sort_values()
+plt.figure(figsize=(12, 6))
+depression_index.plot(kind='bar')
+plt.title('Deprresio Aaverage')
 plt.show()
+
 
 '''
 age 제외 이상치 모두 존재 
