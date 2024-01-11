@@ -105,10 +105,10 @@ max    32947.000000    58.800000  910814.000000    39.800000    84.60000  564132
 
 
 # 시도별 우울증지수 시각화 (바 그래프)
-depression_index = final.groupby('city')['depression'].mean().sort_values()
+depression_index = final.groupby('city')['depression'].sum().sort_values()
 plt.figure(figsize=(12, 6))
 depression_index.plot(kind='bar')
-plt.title('Deprresio Aaverage')
+plt.title('Deprresion Aaverage')
 plt.show()
 
 
@@ -135,9 +135,4 @@ final = pd.concat([default_index,train_robust], axis=1)
 final.to_csv(r'C:\Users\MSI\Desktop\depression-project\Ranee\0_Data\final(preprocessing).csv')
 
 '''
-
-
-import pingouin as pg 
-# pip install seaborn pingouin pandas 
-pg.normality(depression)
 
