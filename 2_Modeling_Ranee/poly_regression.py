@@ -44,7 +44,8 @@ def poly_regression(num) :
     train_rmse = np.sqrt(mean_squared_error(y_train, y_train_pred))
     test_rmse = np.sqrt(mean_squared_error(y_test, y_test_pred))
 
-    # 모델 평가 (R^2)
+    # 모델 성능 평가 (R^2) -> 모델이 데이터를 얼마나 잘 설명하는지
+    # 독립변수가 종속변수를 얼마만큼 설명해 주는지를 가리키는 지표
     train_R = r2_score(y_train, y_train_pred)
     test_R = r2_score(y_test, y_test_pred)
     
@@ -58,27 +59,6 @@ def poly_regression(num) :
     print(f'RMSE(test): {test_rmse}')
     print(f'R^2(train) : {train_R}')
     print(f'R^2(test) : {test_R}')
-
-
-    # 훈련 데이터에 대한 산점도와 회귀선
-    plt.figure(figsize=(12, 6))
-    plt.scatter(y_train, y_train_pred, color='blue', label='Training Data')
-    plt.plot([min(y_train), max(y_train)], [min(y_train), max(y_train)], linestyle='--', color='red', linewidth=2, label='Ideal Line')
-    plt.title('Training Data: Actual vs Predicted')
-    plt.xlabel('Actual Values')
-    plt.ylabel('Predicted Values')
-    plt.legend()
-    plt.show()
-
-    # 테스트 데이터에 대한 산점도와 회귀선
-    plt.figure(figsize=(12, 6))
-    plt.scatter(y_test, y_test_pred, color='green', label='Test Data')
-    plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], linestyle='--', color='red', linewidth=2, label='Ideal Line')
-    plt.title('Test Data: Actual vs Predicted')
-    plt.xlabel('Actual Values')
-    plt.ylabel('Predicted Values')
-    plt.legend()
-    plt.show()
 
     return
 
@@ -168,6 +148,7 @@ ridge_poly_regression(2)
 
 # 교차검증 사용
 from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import cross_val_predict
 X_robust = robust_scaler.fit_transform(X) 
 
 def cross_poly_regression(num) :
@@ -187,10 +168,19 @@ def cross_poly_regression(num) :
                                      scoring='r2')
     average_cv_R = np.mean(cv_result_R)
 
+    #print(f'교차검증 RMSE: {cv_rmse}')
+    #print(f'교차검증 평균 RMSE: {average_cv_rmse}')
+    #print(f'교차검증 R^2: {cv_result_R}')
+    #print(f'교차검증 평균 R^2: {average_cv_R}')
+
+
+    y_pred_cv = cross_val_predict(model, X_poly, y, cv=10)
+
+    cv_rmse = np.sqrt(mean_squared_error(y, y_pred_cv))
+    cv_r2 = r2_score(y, y_pred_cv)
+
     print(f'교차검증 RMSE: {cv_rmse}')
-    print(f'교차검증 평균 RMSE: {average_cv_rmse}')
-    print(f'교차검증 R^2: {cv_result_R}')
-    print(f'교차검증 평균 R^2: {average_cv_R}')
+    print(f'교차검증 R^2: {cv_r2}')
 
     return
 
@@ -213,6 +203,7 @@ cross_poly_regression(2) # cv = 10 -> 현재 모든 결과 중에 제일 좋음
 교차검증 평균 R^2: 0.7077171883468395
 '''
 
+
 def ridge_cross_poly_regression(num) :
     poly = PolynomialFeatures(degree=num)
     X_poly = poly.fit_transform(X_robust)    
@@ -232,10 +223,20 @@ def ridge_cross_poly_regression(num) :
                                         scoring='r2')
         average_cv_R = np.mean(cv_result_R)
 
+        # 교차검증 예측값 생성
+        y_pred_cv = cross_val_predict(model, X_poly, y, cv=10)
+
+        # 교차검증 RMSE 및 R^2 계산
+        cv_rmse = np.sqrt(mean_squared_error(y, y_pred_cv))
+        cv_r2 = r2_score(y, y_pred_cv)
+
+        print(f'교차검증 RMSE: {cv_rmse}')
+        print(f'교차검증 R^2: {cv_r2}')
+
         #print(f'규제가 {a}일 때 교차검증 RMSE: {cv_rmse}')
-        print(f'규제가 {a}일 때 교차검증 평균 RMSE: {average_cv_rmse}')
+        #print(f'규제가 {a}일 때 교차검증 평균 RMSE: {average_cv_rmse}')
         #print(f'규제가 {a}일 때 교차검증 R^2: {cv_result_R}')
-        print(f'규제가 {a}일 때 교차검증 평균 R^2: {average_cv_R}')
+        #print(f'규제가 {a}일 때 교차검증 평균 R^2: {average_cv_R}')
 
     return
 
