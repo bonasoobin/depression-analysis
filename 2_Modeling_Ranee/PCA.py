@@ -10,7 +10,7 @@ fianl_dummy = pd.get_dummies(final, columns=['city']) #
 fianl_dummy.info()
 
 
-Robust_X_num = final[['age','population','stress','employment','covid','budget','public facilities','depression']]
+Robust_X_num = final[['age','population','stress','employment','covid','budget','public facilities','depression','patient']]
 robustScaler = RobustScaler() # RobustScaler 객체 생성
 
 # fit_transform()을 사용해서 학습과 스케일링을 한 번에 적용합니다.
@@ -26,7 +26,7 @@ final.to_csv(r'C:\Users\MSI\Desktop\depression-project\Ranee\0_Data\final(prepro
 
 # 다중공산성 확인
 
-X_train_vif = final[['age','population','stress','employment','covid','budget','public facilities']]
+X_train_vif = final[['age','population','stress','employment','covid','budget','public facilities','patient']]
 vif = pd.DataFrame()
 vif['VIF_Factor'] = [variance_inflation_factor(X_train_vif.values, i) 
                      for i in range(X_train_vif.shape[1])]

@@ -12,6 +12,7 @@ year = [str(i) for i in final['year']]
 neighbor = [str(i) for i in final['neighborhood']]
 citynum = [str(i) for i in final['citynum']]
 age = final['age']
+patient=final['patient']
 population = final['population']
 stress = final['stress']
 employment = final['employment']
@@ -21,7 +22,7 @@ pf = final['public facilities']
 depression = final['depression']
 
 # 상관관계계수 확인 및 시각화
-final_corr = final[['age','population','stress','employment','covid','budget','public facilities','depression']]
+final_corr = final[['age','population','stress','employment','covid','budget','public facilities','depression','patient']]
 corr_df = final_corr.corr()
 plt.figure(figsize=(50,30))
 ax = sns.heatmap(corr_df, annot=True)
@@ -76,7 +77,7 @@ def cheak_eda(name) :
     plt.savefig(f"{name}의 boxplot.png")
     plt.close()
 
-
+cheak_eda('patient')
 
 index_name = ['age','population','stress','employment','covid','budget','public facilities','depression']
 for i in index_name :
