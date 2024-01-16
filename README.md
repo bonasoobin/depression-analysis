@@ -48,21 +48,21 @@ SVR / RandomForest: 한수빈
 
 
 # 📊 데이터 소개
-### ✔️ 공공데이터셋을 이용하였습니다.
+#### ✔️ 공공데이터를 이용하였습니다.
 - 행정번호 &nbsp; [출처](https://www.data.go.kr/data/15118810/fileData.do)
 - 우울증 환자 수 &nbsp; [출처](https://www.data.go.kr/data/15118810/fileData.do)
-- 평균연령  &nbsp; [출처](https://jumin.mois.go.kr/etcStatAvgAge.do)
+- 평균연령 &nbsp; [출처](https://jumin.mois.go.kr/etcStatAvgAge.do)
 - 총인구수 &nbsp; [출처](https://jumin.mois.go.kr/)
 - 스트레스 인지율 &nbsp; [출처](https://kosis.kr/statHtml/statHtml.do?orgId=101&tblId=DT_1YL0000_1&vw_cd=MT_GTITLE02&list_id=11_21&obj_var_id=A&itm_id=11110&seqNo=&conn_path=MT_GTITLE02&path=%252FstatisticsList%252FstatisticsListIndex.do)
 - 고용률 &nbsp; [출처](https://kosis.kr/statHtml/statHtml.do?orgId=101&tblId=DT_1DA7004S&vw_cd=MT_ZTITLE&list_id=B11&seqNo=&lang_mode=ko&language=kor&obj_var_id=&itm_id=&conn_path=MT_ZTITLE)
-- 코로나 확진자 수 &nbsp; [출처]([https://www.data.go.kr/data/15118810/fileData.do](https://www.data.go.kr/data/15124288/fileData.do))
+- 코로나 확진자 수 &nbsp; [출처](https://www.data.go.kr/data/15124288/fileData.do)
 - 인구 1인당 지역사회 정신건강 예산 &nbsp; [출처](https://kosis.kr/statHtml/statHtml.do?orgId=117&tblId=DT_920023_A010)
 - 전국 도시 공원 정보 표준 데이터 &nbsp; [출처](https://www.data.go.kr/data/15012890/standard.do)
 - 공공시설 운영 현황 &nbsp; [출처](https://www.lofin365.go.kr/portal/LF5110000.do?pdtaId=9YJWO8ESQV63PIUNS62Q1211398&rdIncrYn=Y&frstParamYn=Y)
 
 
 ### ✔️ 데이터 세부 사항
-데이터 갯수 : 57920개<br>
+데이터 갯수 : 1250개<br>
 ID : 샘플 별 고유 id<br>
 생산년도 : 차량이 생산된 연도<br>
 모델출시년도 : 차량의 모델이 처음으로 출시된 연도<br>
