@@ -136,12 +136,12 @@
 
 
 #### ⚡ 학습 결과 (RMSE, R² SCORE)
-   (1) GradientBoost : 0.131, 0.987
-   (2) Polynomial Regression : 0.626, 0.734 (cv = 10, avg 값 기준)
-   (3) Ridge Polynomial Regression : 0.492, 0.835 (규제 1 기준)
-   (4) SVR : 0.458, 0.725 (cv=5, avg 값 기준)
-   (5) RandomForest
-
+   (1) GradientBoost : 0.131, 0.987<br>
+   (2) Polynomial Regression : 0.626, 0.734 (cv = 10, avg 값 기준)<br>
+   (3) Ridge Polynomial Regression : 0.492, 0.835 (규제 1 기준)<br>
+   (4) SVR : 0.458, 0.725 (cv=5, avg 값 기준)<br>
+   (5) RandomForest<br>
+<br>
    👉 성능 평가가 가장 높은 `GradientBoost` 로 최종 모델 선정
    
 
