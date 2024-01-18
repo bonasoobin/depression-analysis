@@ -25,7 +25,7 @@ depression = final['depression']
 final_corr = final[['age','population','stress','employment','covid','budget','public facilities','depression','patient']]
 corr_df = final_corr.corr()
 plt.figure(figsize=(50,30))
-ax = sns.heatmap(corr_df, annot=True)
+ax = sns.heatmap(corr_df, annot=True , annot_kws={'size': 20})
 plt.show()
 plt.savefig("변수간의 상관분석")
 
@@ -55,23 +55,51 @@ plt.title('Public Facilities')
 plt.subplot(3,3,8)
 plt.hist(depression)
 plt.title('depression')
+plt.subplot(3,3,9)
+plt.hist(patient)
+plt.title('patient')
 plt.figure(figsize= (30.30))
 plt.tight_layout()
 plt.show()
 plt.savefig("변수 별 히스토그램")
 
 
-# 이상치와 산점도확인
+# 산점도확인
+plt.subplot(3,3,1)
+plt.scatter(x=final['age'], y=final['depression'], color='blue', label=None, s=1)
+plt.title("Age")
+plt.subplot(3,3,2)
+plt.scatter(x=final['population'], y=final['depression'], color='blue', label=None, s=1)
+plt.title("Population")
+plt.subplot(3,3,3)
+plt.scatter(x=final['stress'], y=final['depression'], color='blue', label=None, s=1)
+plt.title('Stress')
+plt.subplot(3,3,4)
+plt.scatter(x=final['employment'], y=final['depression'], color='blue', label=None, s=1)
+plt.title('Employment')
+plt.subplot(3,3,5)
+plt.scatter(x=final['covid'], y=final['depression'], color='blue', label=None, s=1)
+plt.title('Covid-19')
+plt.subplot(3,3,6)
+plt.scatter(x=final['budget'], y=final['depression'], color='blue', label=None, s=1)
+plt.title('Budget')
+plt.subplot(3,3,7)
+plt.scatter(x=final['public facilities'], y=final['depression'], color='blue', label=None, s=1)
+plt.title('Public Facilities')
+plt.subplot(3,3,8)
+plt.scatter(x=final['depression'], y=final['depression'], color='blue', label=None, s=1)
+plt.title('depression')
+plt.subplot(3,3,9)
+plt.scatter(x=final['patient'], y=final['depression'], color='blue', label=None, s=1)
+plt.title('patient')
+plt.figure(figsize= (50.50))
+plt.tight_layout()
+plt.show()
+plt.savefig("우울증수치와 각 독립변수 별 산점도 확인")
 
+
+# 이상치 확인
 def cheak_eda(name) :
-    plt.figure(figsize=(8, 6))
-    sns.scatterplot(x=final[f"{name}"], y=final['depression'], color='blue')
-    plt.title(f"Scatter Plot of Depression Score vs{name}")
-    plt.xlabel(f"{name}")
-    plt.ylabel('Depression Score')
-    plt.savefig(f"{name}과 depression의 산점도.png")
-    plt.close()
-
     plt.figure(figsize=(10,20))
     box = final.boxplot(column=[f"{name}"])
     plt.savefig(f"{name}의 boxplot.png")
@@ -79,13 +107,11 @@ def cheak_eda(name) :
 
 cheak_eda('patient')
 
-index_name = ['age','population','stress','employment','covid','budget','public facilities','depression']
+index_name = ['age','population','stress','employment','covid','budget','public facilities','depression','patient']
 for i in index_name :
     cheak_eda(i)
 
 final[final['budget'] == 13975] # 전라북도 -> 확인완 (오류아님)
-
-
 
 
  # 기술통계  
