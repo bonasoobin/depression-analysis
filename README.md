@@ -8,16 +8,15 @@
 
 #### ✔️ 이 프로젝트는 2018년부터 2022년까지의 전국 자치구 단위 데이터를 활용하여 <br> &nbsp; &nbsp; &nbsp; 우울증 지수(우울증 환자 수 대비 총 인구 수)를 예측하는 것을 목표로 합니다.
 <br>
-<br>
 
-## 목차
+## 📋 목차
 - [1. 기술 스택](#-기술-스택)
 - [2. 문제 정의](#-문제-정의)
 - [3. 팀원 소개 및 역할](#-팀원-소개-및-역할)
 - [4. 프로젝트 진행 기록](#-프로젝트-진행-기록)
 - [5. 데이터 소개](#-데이터-소개)
 - [6. 데이터 전처리](#-데이터-전처리)
-- [7. 탐색적 데이터 분석(EDA)](#-탐색적-데이터-분석-EDA-)
+- [7. 탐색적 데이터 분석(EDA)](#-탐색적-데이터-분석eda)
 - [8. 모델링](#-모델링)
 - [9. 결론](#-결론)
 - [10. 한계점](#-한계점)
@@ -39,6 +38,7 @@
 <img src="https://img.shields.io/badge/VS code-2F80ED?style=for-the-badge&logo=VS code&logoColor=white"> ![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white)
 ### ▪ 협업 툴
 <img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white"> <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Google Slides&logoColor=white">
+<br>
 <br>
 
 ## ⚠️ 문제 정의
@@ -274,7 +274,7 @@ VIF 분석을 통해 다중공선성이 없음을 확인하였습니다.
 <br>
 
 #### [그래프 해석]
-우울증 환자 수, 총 인구 수 등의 변수가 우울증 지수를 예측하는 데 중요한 역할을 합니다.
+우울증 환자 수, 총 인구 수 변수가 우울증 지수를 예측하는 데 중요한 역할을 합니다.
 <br>
 
 
