@@ -113,19 +113,21 @@
 + (3) `boxplot`을 통해 이상치 확인 후, 이상치에 민감하지 않은 `RobustScaler`을 진행
 + (4) **`ACF` 그래프를 통해 년도 변수가 독립적임을 확인** → 년도 변수 삭제 
 
-![image](https://github.com/yelimkong/depression-analysis/assets/48948604/d5cccbb7-b31c-4f37-ac8c-a73d8b5745a4)
+
+  <p align="center"><img src="https://github.com/yelimkong/depression-analysis/assets/48948604/d5cccbb7-b31c-4f37-ac8c-a73d8b5745a4"></p>
 
 raw 데이터에서 변수별 히스토그램을 그려보았을 때, 스트레스 인지율과 고용률 변수는 비교적 정규분포와 유사한 형태를 보이며, 평균 연령 변수는 비교적 균등하게 퍼져있으며 중앙값 주위에 집중된 모습을 보입니다. 다른 대부분의 변수들은 낮은 값에서 높은 빈도를 보이고 오른쪽으로 긴 꼬리를 가지고 있습니다. 
 <br>
 <br>
 
-![image](https://github.com/yelimkong/depression-analysis/assets/48948604/0b93b44f-3669-40b9-9d46-0d5464eddadb)
+<p align="center"><img src="https://github.com/yelimkong/depression-analysis/assets/48948604/0b93b44f-3669-40b9-9d46-0d5464eddadb"></p>
+
 
 변수 간의 상관관계를 분석한 결과, 우울증 지수와 우울증 환자 수는 강한 상관관계를, 우울증 지수와 고용률은 중간 정도의 음의 상관관계를 띄는 것을 확인할 수 있었습니다.
 <br>
 <br>
 
-![image](https://github.com/yelimkong/depression-analysis/assets/48948604/2f65e7e2-c1f5-4e28-bfed-a9f29e083e8c)
+<p align="center"><img src="https://github.com/yelimkong/depression-analysis/assets/48948604/2f65e7e2-c1f5-4e28-bfed-a9f29e083e8c></p>
 
 독립변수들과 종속변수(우울증 지수)간의 산점도를 확인하였을때 모두 비선형관계를 보이고 있습니다.
 <br>
@@ -234,7 +236,7 @@ VIF 분석을 통해 다중공선성이 없음을 확인하였습니다.
 <br>
 
 ### ✔️ 결과 해석
-![image](https://github.com/yelimkong/depression-analysis/assets/48948604/5a0626d3-a6cc-4248-bb6a-d9457f8e963a)
+<p align="center"><img src=https://github.com/yelimkong/depression-analysis/assets/48948604/5a0626d3-a6cc-4248-bb6a-d9457f8e963a></p>
 <br>
 
 #### [그래프 해석]
@@ -242,7 +244,7 @@ VIF 분석을 통해 다중공선성이 없음을 확인하였습니다.
 <br>
 
 
-![image](https://github.com/yelimkong/depression-analysis/assets/48948604/325a6b32-3c07-4a89-bd8f-34a3a7e8e01a)
+<p align="center"><img src=https://github.com/yelimkong/depression-analysis/assets/48948604/325a6b32-3c07-4a89-bd8f-34a3a7e8e01a></p>
 <br>
 잔차의 등분산성 그래프를 그려보았을때, 잔차 플롯에서 어느 정도 0 주변에서 관측 되는, 기울기가 0인 빨간 선을 확인하였습니다. 이 중 몇개의 데이터는 이상치로 보이지만 0을 중심으로 특정한 패턴을 가지고 있지 않음을 확인할 수 있으며 잔차가 0을 중심으로 크게 벗어나지 않음을 확인할 수 있습니다.
 
