@@ -107,7 +107,7 @@ def cheak_eda(name) :
 
 cheak_eda('patient')
 
-index_name = ['age','population','stress','employment','covid','budget','public facilities','depression']
+index_name = ['age','population','stress','employment','covid','budget','public facilities','depression','patient']
 for i in index_name :
     cheak_eda(i)
 
