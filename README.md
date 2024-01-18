@@ -1,3 +1,4 @@
+
 ## 🚀 프로젝트명
 
 ### ✔️ 우울증 지수 예측 프로젝트 😞
@@ -6,6 +7,26 @@
 ## 📃 프로젝트 소개
 
 #### ✔️ 이 프로젝트는 2018년부터 2022년까지의 전국 자치구 단위 데이터를 활용하여 <br> &nbsp; &nbsp; &nbsp; 우울증 지수(우울증 환자 수 대비 총 인구 수)를 예측하는 것을 목표로 합니다.
+<br>
+<br>
+
+## 🛠 기술 스택
+
+### ▪ 언어
+<img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
+
+### ▪ 주요 라이브러리
+<img src="https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white"> <img src="https://img.shields.io/badge/numpy-013243?style=for-the-badge&logo=numpy&logoColor=white">  <img src="https://img.shields.io/badge/scikit learn-F7931E?style=for-the-badge&logo=scikit learn&logoColor=white">  <img src="https://img.shields.io/badge/matplotlib-0058CC?style=for-the-badge&logo=matplotlib&logoColor=white"> <img src="https://img.shields.io/badge/seaborn-99CC00?style=for-the-badge&logo=seaborn&logoColor=white"> <img src="https://img.shields.io/badge/statsmodels-181717?style=for-the-badge&logo=statsmodels&logoColor=white">
+<!--
+<img src="https://img.shields.io/badge/wordcloud-FF4F8B?style=for-the-badge&logo=wordcloud&logoColor=white">
+<img src="https://img.shields.io/badge/konlpy-FF0000?style=for-the-badge&logo=konlpy&logoColor=white"> <img src="https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=collections&logoColor=white">-->
+
+
+### ▪ 개발 툴
+<img src="https://img.shields.io/badge/VS code-2F80ED?style=for-the-badge&logo=VS code&logoColor=white"> ![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white)
+### ▪ 협업 툴
+<img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white"> <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Google Slides&logoColor=white">
+
 <br>
 
 ## ⚠️ 문제 정의
@@ -127,7 +148,7 @@ raw 데이터에서 변수별 히스토그램을 그려보았을 때, 스트레�
 <br>
 <br>
 
-<p align="center"><img src="https://github.com/yelimkong/depression-analysis/assets/48948604/2f65e7e2-c1f5-4e28-bfed-a9f29e083e8c></p>
+<p align="center"><img src="https://github.com/yelimkong/depression-analysis/assets/48948604/2f65e7e2-c1f5-4e28-bfed-a9f29e083e8c"></p>
 
 독립변수들과 종속변수(우울증 지수)간의 산점도를 확인하였을때 모두 비선형관계를 보이고 있습니다.
 <br>
@@ -257,24 +278,7 @@ VIF 분석을 통해 다중공선성이 없음을 확인하였습니다.
 ### ✔️ 한계점
 
 
-## 🛠 기술 스택
 
-### ▪ 언어
-<img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
-
-### ▪ 주요 라이브러리
-<img src="https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white"> <img src="https://img.shields.io/badge/numpy-013243?style=for-the-badge&logo=numpy&logoColor=white">  <img src="https://img.shields.io/badge/scikit learn-F7931E?style=for-the-badge&logo=scikit learn&logoColor=white">  <img src="https://img.shields.io/badge/matplotlib-0058CC?style=for-the-badge&logo=matplotlib&logoColor=white"> <img src="https://img.shields.io/badge/seaborn-99CC00?style=for-the-badge&logo=seaborn&logoColor=white"> <img src="https://img.shields.io/badge/statsmodels-181717?style=for-the-badge&logo=statsmodels&logoColor=white">
-<!--
-<img src="https://img.shields.io/badge/wordcloud-FF4F8B?style=for-the-badge&logo=wordcloud&logoColor=white">
-<img src="https://img.shields.io/badge/konlpy-FF0000?style=for-the-badge&logo=konlpy&logoColor=white"> <img src="https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=collections&logoColor=white">-->
-
-
-
-
-### ▪ 개발 툴
-<img src="https://img.shields.io/badge/VS code-2F80ED?style=for-the-badge&logo=VS code&logoColor=white"> ![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white)
-### ▪ 협업 툴
-<img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white"> <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Google Slides&logoColor=white">
 
     
 
