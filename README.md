@@ -13,7 +13,7 @@
 2003년부터 2016년, 그리고 2017년을 제외한 **18년 동안 OECD 국가 중 자살률은 1위를 기록했습니다.**    
 통계청에 따르면 **자살 원인 중 우울증이 35.4%** 로 가장 큰 비율을 차지합니다.  
 <br>
-자살 관련 기사가 많고, 주변에서도 우울증으로 인해 병원을 찾는 사람들을 자주 볼 수 있습니다.   
+실제로 자살 관련 기사를 많이 접하고, 주변에서도 우울증으로 인해 병원을 찾는 사람들을 자주 볼 수 있습니다.   
 국민건강보험공단에 따르면, 2020년 우울증 진료를 받은 인원은 100만 461명에 달합니다.   
 국민 4명 중 1명이 정신 질환을 경험하지만, 정부의 정신건강 예산은 세계보건기구(WHO) 권장치의 절반에도 미치지 못합니다.   
 <br>
@@ -29,7 +29,7 @@
 - [💙 한수빈 💙](https://github.com/bonasoobin)
 
 ### ✔️ 역할 분담
-프로젝트를 진행하며 모든 팀원이 머신러닝 프로세스에 대한 경험을 쌓기 위해 데이터 수집 및 전처리, 탐색적 데이터 분석(EDA), 모델링, 파라미터 튜닝, 그리고 인사이트 도출과 같은 다양한 단계들을 각자 맡아 수행했습니다. 
+프로젝트를 진행하며 모든 팀원이 머신러닝 프로세스에 대한 경험을 쌓기 위해 데이터 수집 및 전처리, 탐색적 데이터 분석(EDA), 모델링, 파라미터 튜닝, 그리고 인사이트 도출과 같은 다양한 단계들을 함께 수행했습니다. 
 작업의 관리를 용이하게 하기 위해, 각 팀원의 이름을 사용하여 별도의 브랜치(yelim, ranee, soobin)를 만들어 기록했습니다. 
 <br>
 
@@ -57,10 +57,6 @@
 - 24-01-18 : 깃허브 readme 작성 및 노션 정리
 <br>
 
-## 💡 변수 선정 이유
-
-<br>
-
 
 ## 📊 데이터 소개
 ### ✔️ 원본 데이터
@@ -74,13 +70,15 @@
 - 전국 도시 공원 정보 표준 데이터 &nbsp; [출처](https://www.data.go.kr/data/15012890/standard.do)
 - 공공시설 운영 현황 &nbsp; [출처](https://www.lofin365.go.kr/portal/LF5110000.do?pdtaId=9YJWO8ESQV63PIUNS62Q1211398&rdIncrYn=Y&frstParamYn=Y)
 
+### ✔️ 변수 선정 이유
+여러 논문과 기사, 정부 기관에서 발표된 통계 결과들을 바탕으로 우울증의 발생과 관련이 있을 것으로 예상되는 **평균 연령, 총 인구 수, 스트레스 인지율, 고용률, 코로나 확진자 수, 1인당 정신건강 예산, 공공시설 개수**를 독립변수로 선택하여 분석에 활용하기로 결정하였습니다. <br>
 
 ### ✔️ 데이터 세부 사항
 + 기준 : 자치구 단위<br>
 + 데이터 기간 : 2018년 ~ 2022년
 + 데이터 갯수 : 1250개<br>
 1. 시도 <br>
-2. 시군구 <br>
+2. 자치구 <br>
 3. 행정번호 <br>
 4. 년도 <br>
 5. 우울증 환자 수<br>
@@ -99,22 +97,34 @@
 ## 💡 데이터 전처리
 + (1) `int`형이었던 행정번호 컬럼은 `object`형으로 형변환
 + (2) 2018년, 2019년의 코로나 확진자 수 0명으로 대체 
-+ (3) 공공시설 데이터와 공원 데이터 자치구 단위로 합침
-+ (4) 공공시설 데이터는 2018년, 2019년, 2020년, 2022년만 존재하기에 2021년 데이터는 2020년과 2022년의 평균값으로 대체
-+ (5) 공원 데이터 내의 대구광역시 군위군 → 경상북도 군위군으로 변경(군위군의 대구광역시 편입은 2023년)
++ (3) 공공시설 데이터와 공원 데이터 자치구 단위로 통합(공원 데이터 내 묘지공원(기피시설) 제외)
++ (4) 공원 데이터는 2023년 기준 누적 데이터이므로 자치구명 변경된 데이터는 자체 수정(대구광역시 군위군 -> 경상북도 군위군) <br><br>
+**결측값 처리**
++ (5-1) 서울, 부산, 대구, 인천, 광주, 대전, 울산 등 7개 광역시의 2018-2020년 자치구별 고용률 데이터 결측치는 시도 데이터로 대체 처리
++ (5-2) 1인당 정신건강 예산 데이터는 자치구별 정신건강 예산 데이터가 부재하여, 시도별 데이터로 대체 처리
++ (5-3) 세종특별자치시, 제주특별자치도의 5년간 스트레스 인지율 데이터는 시도 데이터로 대체 처리
++ (5-4) 공공시설 데이터 중 2021년 데이터 부재로 2020년과 2022년의 평균값으로 대체
 <br>
 
 ## 💡 탐색적 데이터 분석(EDA)
 + (1) 변수 간 상관관계 행렬과 산점도 확인 → 선형관계가 없다는 것을 확인
-+ (2) 시도, 시군구, 행정번호 컬럼은 식별자 컬럼이기 때문에 삭제
++ (2) 시도, 자치구, 행정번호 컬럼은 식별자 컬럼이기 때문에 삭제
 + (3) `boxplot`을 통해 이상치 확인 후, 이상치에 민감하지 않은 `RobustScaler`을 진행
 + (4) **`ACF` 그래프를 통해 년도 변수가 독립적임을 확인** → 년도 변수 삭제
 + (5) `VIF` 분석을 통한 다중공선성 확인 → **다중공선성 없는 것으로 확인**
+![image](https://github.com/yelimkong/depression-analysis/assets/48948604/0b93b44f-3669-40b9-9d46-0d5464eddadb)
+
+변수 간의 상관관계를 분석한 결과, 우울증 지수와 우울증 환자 수는 강한 상관관계를, 우울증 지수와 고용률은 중간 정도의 음의 상관관계를 띄는 것을 확인할 수 있었습니다.
+<br>
+
+![image](https://github.com/yelimkong/depression-analysis/assets/48948604/d5cccbb7-b31c-4f37-ac8c-a73d8b5745a4)
+
+raw 데이터에서 변수별 히스토그램을 그려보았을 때, 스트레스 인지율과 고용률 변수는 비교적 정규분포와 유사한 형태를 보이며, 평균 연령 변수는 비교적 균등하게 퍼져있으며 중앙값 주위에 집중된 모습을 보입니다. 다른 대부분의 변수들은 낮은 값에서 높은 빈도를 보이고 오른쪽으로 긴 꼬리를 가지고 있습니다. 
 <br>
 
 
 ## 💡 모델링
-#### ✔️ 변수 간 비선형 관계임을 확인한 후 비선형 모델을 선택한 후 모델링
+#### ✔️ 변수 간 비선형 관계임을 확인한 후 비선형 모델로 모델링
 
 
 #### 1. GradientBoost
@@ -128,40 +138,29 @@
 #### 5. RandomForest
 
 
-#### ⚡ 학습 결과 (RMSE, R² SCORE)
-   (1) GradientBoost : 0.131, 0.987<br>
-   (2) Polynomial Regression : 0.626, 0.734 (cv = 10, avg 값 기준)<br>
-   (3) Ridge Polynomial Regression : 0.492, 0.835 (규제 1 기준)<br>
-   (4) SVR : 0.458, 0.725 (cv=5, avg 값 기준)<br>
-   (5) RandomForest<br>
+#### ⚡ 학습 결과 (R² SCORE, RMSE)
+   (1) GradientBoost : 0.987, 0.131 `(train/test)` <br>
+   (2) Polynomial Regression : 0.734, 0.626 `(cross_validation (cv=10))` <br>
+   (3) Ridge Polynomial Regression : 0.835, 0.492 `(cross_validation (cv=10), alpha=1)` <br>
+   (4) SVR : 0.752, 0.458 `(cross_validation (cv=10))` <br>
+   (5) RandomForest : 0.983, 0.146 `(cross_validation (cv=10))` <br>
 <br>
    👉 성능 평가가 가장 높은 `GradientBoost` 로 최종 모델 선정
    
 
 
-### ✔️ 머신 러닝
+### ✔️ 결과 해석
+![image](https://github.com/yelimkong/depression-analysis/assets/48948604/325a6b32-3c07-4a89-bd8f-34a3a7e8e01a)
+<br>
+잔차의 등분산성 그래프를 그려보았을때, 잔차 플롯에서 어느 정도 0 주변에서 관측 되는, 기울기가 0인 빨간 선을 확인하였습니다. 이 중 몇개의 데이터는 이상치로 보이지만 0을 중심으로 특정한 패턴을 가지고 있지 않음을 확인할 수 있으며 잔차가 0을 중심으로 크게 벗어나지 않음을 확인할 수 있습니다.
 
 
-
-3. AutoML <br>
-
-   (1) 앞서 구현한 모델들의 MAE값을 줄이기 위해 Optuna, Auto Gluon, Pycaret 총 3가지의 AutoML을 사용<br>
-   (2) Optuna : xgb의 경우 best Trial의 값이 5.885, lgbm의 경우 best trial의 값이 5.9726으로 기존의 MAE값 보다 더 나은 결과를 도출<br>
-   (3) Auto Gluon :  L2 모델이 6.051919, xgb는 6.245744, lgbm은 6.165254로 기존의 MAE값 보다 더 나은 결과를 도출<br>
-   (4) Pycaret : Blending을 통해 여러 모델들을 혼합하여 새로운 모델 생성 -> MAE가 가장 낮게 나온 모델인 CatBoost, XGBoost 모델 Blending : 5.8961, 렌덤으로 Blending
-       한 모델 :  5.9002, 기존의 MAE 값 보다 더 나은 결과 도출<br>
-   (5) 결론적으로 AutoML을 사용한 결과 모든 프레임 워크들이 기존의 K-Fold된된 모델의 MAE값보다 확연히 낮아진것을 확인하였으며, 그 중에서도 Optuna를 통해 생성한              XGBoost 모델의 MAE값이 가장 좋게 나온 것을 확인<br>
-
-4. Auto ML 학습 결과 (MAE) <br>
-   (1) Optuna (XGBoost) : 5.885<br>
-   (2) Auto Gluon (L2) : 6.051919<br>
-   (3) Pycaret (CatBoost, XGBoost Blend 모델) : 5.8961<br>
    
 
-### ✔️ 결과
+### ✔️ 결론
 
 
-
+### ✔️ 회고
 
 
 ## 🛠 기술 스택
@@ -170,11 +169,10 @@
 <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
 
 ### ▪ 주요 라이브러리
-<img src="https://img.shields.io/badge/numpy-013243?style=for-the-badge&logo=numpy&logoColor=white"> <img src="https://img.shields.io/badge/scikit learn-F7931E?style=for-the-badge&logo=scikit learn&logoColor=white"> <img src="https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white">
-<img src="https://img.shields.io/badge/matplotlib-0058CC?style=for-the-badge&logo=matplotlib&logoColor=white">
-<img src="https://img.shields.io/badge/seaborn-99CC00?style=for-the-badge&logo=seaborn&logoColor=white">  
+<img src="https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white"> <img src="https://img.shields.io/badge/numpy-013243?style=for-the-badge&logo=numpy&logoColor=white">  <img src="https://img.shields.io/badge/scikit learn-F7931E?style=for-the-badge&logo=scikit learn&logoColor=white">  <img src="https://img.shields.io/badge/matplotlib-0058CC?style=for-the-badge&logo=matplotlib&logoColor=white"> <img src="https://img.shields.io/badge/seaborn-99CC00?style=for-the-badge&logo=seaborn&logoColor=white"> <img src="https://img.shields.io/badge/statsmodels-181717?style=for-the-badge&logo=statsmodels&logoColor=white">
+<!--
 <img src="https://img.shields.io/badge/wordcloud-FF4F8B?style=for-the-badge&logo=wordcloud&logoColor=white">
-<img src="https://img.shields.io/badge/konlpy-FF0000?style=for-the-badge&logo=konlpy&logoColor=white"> <img src="https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=collections&logoColor=white">
+<img src="https://img.shields.io/badge/konlpy-FF0000?style=for-the-badge&logo=konlpy&logoColor=white"> <img src="https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=collections&logoColor=white">-->
 
 
 
