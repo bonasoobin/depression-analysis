@@ -98,58 +98,150 @@
 + (1) `int`형이었던 행정번호 컬럼은 `object`형으로 형변환
 + (2) 2018년, 2019년의 코로나 확진자 수 0명으로 대체 
 + (3) 공공시설 데이터와 공원 데이터 자치구 단위로 통합(공원 데이터 내 묘지공원(기피시설) 제외)
-+ (4) 공원 데이터는 2023년 기준 누적 데이터이므로 자치구명 변경된 데이터는 자체 수정(대구광역시 군위군 -> 경상북도 군위군) <br><br>
++ (4) 공원 데이터는 2023년 기준 누적 데이터이므로 자치구명 변경된 데이터는 자체 수정(대구광역시 군위군 -> 경상북도 군위군)
++ (5) 시도, 자치구, 행정번호 컬럼은 식별자 컬럼이기 때문에 삭제 <br><br>
 **결측값 처리**
-+ (5-1) 서울, 부산, 대구, 인천, 광주, 대전, 울산 등 7개 광역시의 2018-2020년 자치구별 고용률 데이터 결측치는 시도 데이터로 대체 처리
-+ (5-2) 1인당 정신건강 예산 데이터는 자치구별 정신건강 예산 데이터가 부재하여, 시도별 데이터로 대체 처리
-+ (5-3) 세종특별자치시, 제주특별자치도의 5년간 스트레스 인지율 데이터는 시도 데이터로 대체 처리
-+ (5-4) 공공시설 데이터 중 2021년 데이터 부재로 2020년과 2022년의 평균값으로 대체
++ (6-1) 서울, 부산, 대구, 인천, 광주, 대전, 울산 등 7개 광역시의 2018-2020년 자치구별 고용률 데이터 결측치는 시도 데이터로 대체 처리
++ (6-2) 1인당 정신건강 예산 데이터는 자치구별 정신건강 예산 데이터가 부재하여, 시도별 데이터로 대체 처리
++ (6-3) 세종특별자치시, 제주특별자치도의 5년간 스트레스 인지율 데이터는 시도 데이터로 대체 처리
++ (6-4) 공공시설 데이터 중 2021년 데이터 부재로 2020년과 2022년의 평균값으로 대체
 <br>
 
 ## 💡 탐색적 데이터 분석(EDA)
 + (1) 변수 간 상관관계 행렬과 산점도 확인 → 선형관계가 없다는 것을 확인
-+ (2) 시도, 자치구, 행정번호 컬럼은 식별자 컬럼이기 때문에 삭제
++ (2) `VIF` 분석을 통한 다중공선성 확인 → **다중공선성 없는 것으로 확인**
 + (3) `boxplot`을 통해 이상치 확인 후, 이상치에 민감하지 않은 `RobustScaler`을 진행
-+ (4) **`ACF` 그래프를 통해 년도 변수가 독립적임을 확인** → 년도 변수 삭제
-+ (5) `VIF` 분석을 통한 다중공선성 확인 → **다중공선성 없는 것으로 확인**
-![image](https://github.com/yelimkong/depression-analysis/assets/48948604/0b93b44f-3669-40b9-9d46-0d5464eddadb)
-
-변수 간의 상관관계를 분석한 결과, 우울증 지수와 우울증 환자 수는 강한 상관관계를, 우울증 지수와 고용률은 중간 정도의 음의 상관관계를 띄는 것을 확인할 수 있었습니다.
-<br>
++ (4) **`ACF` 그래프를 통해 년도 변수가 독립적임을 확인** → 년도 변수 삭제 
 
 ![image](https://github.com/yelimkong/depression-analysis/assets/48948604/d5cccbb7-b31c-4f37-ac8c-a73d8b5745a4)
 
 raw 데이터에서 변수별 히스토그램을 그려보았을 때, 스트레스 인지율과 고용률 변수는 비교적 정규분포와 유사한 형태를 보이며, 평균 연령 변수는 비교적 균등하게 퍼져있으며 중앙값 주위에 집중된 모습을 보입니다. 다른 대부분의 변수들은 낮은 값에서 높은 빈도를 보이고 오른쪽으로 긴 꼬리를 가지고 있습니다. 
 <br>
+<br>
 
+![image](https://github.com/yelimkong/depression-analysis/assets/48948604/0b93b44f-3669-40b9-9d46-0d5464eddadb)
+
+변수 간의 상관관계를 분석한 결과, 우울증 지수와 우울증 환자 수는 강한 상관관계를, 우울증 지수와 고용률은 중간 정도의 음의 상관관계를 띄는 것을 확인할 수 있었습니다.
+<br>
+<br>
+
+![image](https://github.com/yelimkong/depression-analysis/assets/48948604/2f65e7e2-c1f5-4e28-bfed-a9f29e083e8c)
+
+독립변수들과 종속변수(우울증 지수)간의 산점도를 확인하였을때 모두 비선형관계를 보이고 있습니다.
+<br>
+<br>
+<br>
+
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-nbj5">VIF Factor</th>
+    <th class="tg-nbj5">features</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-t1ow">5.39</td>
+    <td class="tg-t1ow">총 인구 수</td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">3.09</td>
+    <td class="tg-c3ow">우울증 환자 수</td>
+  </tr>
+  <tr>
+    <td class="tg-t1ow">2.72</td>
+    <td class="tg-t1ow">평균 연령</td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">2.26</td>
+    <td class="tg-c3ow">공공시설 개수</td>
+  </tr>
+  <tr>
+    <td class="tg-t1ow">1.88</td>
+    <td class="tg-t1ow">고용률</td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">1.44</td>
+    <td class="tg-c3ow">코로나 확진자 수</td>
+  </tr>
+  <tr>
+    <td class="tg-x2zk">1.32</td>
+    <td class="tg-x2zk">1인당 정신건강 예산(원)</td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">1.29</td>
+    <td class="tg-c3ow">스트레스 인지율</td>
+  </tr>
+</tbody>
+</table>
+VIF 분석을 통해 다중공선성이 없음을 확인하였습니다.
+<br>
+
+<br>
+<br>
 
 ## 💡 모델링
 #### ✔️ 변수 간 비선형 관계임을 확인한 후 비선형 모델로 모델링
 
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-y698" rowspan="2">알고리즘 모델</th>
+    <th class="tg-y698" colspan="2">모델 성능 평가 지표</th>
+    <th class="tg-y698" rowspan="2">비고</th>
+  </tr>
+  <tr>
+    <th class="tg-y698">r²</th>
+    <th class="tg-y698">rmse</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-y698">GradientBoost</td>
+    <td class="tg-c6of">0.987</td>
+    <td class="tg-c6of">0.131</td>
+    <td class="tg-c6of">train/test</td>
+  </tr>
+  <tr>
+    <td class="tg-y698">Polynomial Regression</td>
+    <td class="tg-c6of">0.734</td>
+    <td class="tg-c6of">0.626</td>
+    <td class="tg-c6of">cross_validation (cv=10)</td>
+  </tr>
+  <tr>
+    <td class="tg-y698">Ridge Polynomial Regression</td>
+    <td class="tg-c6of">0.835</td>
+    <td class="tg-c6of">0.492</td>
+    <td class="tg-c6of">cross_validation (cv=10), alpha=1</td>
+  </tr>
+  <tr>
+    <td class="tg-y698">SVR</td>
+    <td class="tg-c6of">0.752</td>
+    <td class="tg-c6of">0.458</td>
+    <td class="tg-c6of">cross_validation (cv=5)</td>
+  </tr>
+  <tr>
+    <td class="tg-y698">RandomForest</td>
+    <td class="tg-c6of">0.983</td>
+    <td class="tg-c6of">0.146</td>
+    <td class="tg-c6of">cross_validation (cv=10)</td>
+  </tr>
+</tbody>
+</table>
 
-#### 1. GradientBoost
-
-#### 2. Polynomial Regression
-
-#### 3. Ridge
-
-#### 4. SVR
-
-#### 5. RandomForest
-
-
-#### ⚡ 학습 결과 (R² SCORE, RMSE)
-   (1) GradientBoost : 0.987, 0.131 `(train/test)` <br>
-   (2) Polynomial Regression : 0.734, 0.626 `(cross_validation (cv=10))` <br>
-   (3) Ridge Polynomial Regression : 0.835, 0.492 `(cross_validation (cv=10), alpha=1)` <br>
-   (4) SVR : 0.752, 0.458 `(cross_validation (cv=10))` <br>
-   (5) RandomForest : 0.983, 0.146 `(cross_validation (cv=10))` <br>
+👉 성능 평가가 가장 높은 `GradientBoost` 로 최종 모델 선정
 <br>
-   👉 성능 평가가 가장 높은 `GradientBoost` 로 최종 모델 선정
-   
-
+<br>
 
 ### ✔️ 결과 해석
+![image](https://github.com/yelimkong/depression-analysis/assets/48948604/5a0626d3-a6cc-4248-bb6a-d9457f8e963a)
+<br>
+
+#### [그래프 해석]
+우울증 환자 수, 총 인구 수 등의 변수가 우울증 지수를 예측하는 데 중요한 역할을 합니다.
+<br>
+
+
 ![image](https://github.com/yelimkong/depression-analysis/assets/48948604/325a6b32-3c07-4a89-bd8f-34a3a7e8e01a)
 <br>
 잔차의 등분산성 그래프를 그려보았을때, 잔차 플롯에서 어느 정도 0 주변에서 관측 되는, 기울기가 0인 빨간 선을 확인하였습니다. 이 중 몇개의 데이터는 이상치로 보이지만 0을 중심으로 특정한 패턴을 가지고 있지 않음을 확인할 수 있으며 잔차가 0을 중심으로 크게 벗어나지 않음을 확인할 수 있습니다.
@@ -160,7 +252,7 @@ raw 데이터에서 변수별 히스토그램을 그려보았을 때, 스트레�
 ### ✔️ 결론
 
 
-### ✔️ 회고
+### ✔️ 한계점
 
 
 ## 🛠 기술 스택
