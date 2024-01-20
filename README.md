@@ -266,7 +266,7 @@ VIF 분석을 통해 다중공선성이 없음을 확인하였습니다.
 </tbody>
 </table>
 
-👉 성능 평가가 높은 `GradientBoost`와 `Random Forest`는 overfiting이 있을 수도 있다고 판단하여 최종 모델은 `Ridge Polynomial Regression` 으로 선정
+👉 성능 평가가 높은 `GradientBoost`와 `RandomForest`는 overfiting의 양상이 보였으므로 최종 모델은 `Ridge Polynomial Regression` 으로 선정
 <br>
 <br>
 
