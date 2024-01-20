@@ -103,6 +103,7 @@
 - 인구 1인당 지역사회 정신건강 예산 &nbsp; [출처](https://kosis.kr/statHtml/statHtml.do?orgId=117&tblId=DT_920023_A010)
 - 전국 도시 공원 정보 표준 데이터 &nbsp; [출처](https://www.data.go.kr/data/15012890/standard.do)
 - 공공시설 운영 현황 &nbsp; [출처](https://www.lofin365.go.kr/portal/LF5110000.do?pdtaId=9YJWO8ESQV63PIUNS62Q1211398&rdIncrYn=Y&frstParamYn=Y)
+- 정신건강검사 결과  &nbsp; [출처](https://kosis.kr/statHtml/statHtml.do?orgId=350&tblId=DT_35007_N1180&vw_cd=MT_ZTITLE&list_id=350_35007_A001&seqNo=&lang_mode=ko&language=kor&obj_var_id=&itm_id=&conn_path=MT_ZTITLE)
 
 ### ✔️ 변수 선정 이유
 여러 논문과 기사, 정부 기관에서 발표된 통계 결과들을 바탕으로 우울증의 발생과 관련이 있을 것으로 예상되는 **평균연령, 총인구수, 스트레스인지율, 고용률, 코로나 확진자 수, 1인당 정신건강 예산, 공공시설 개수**를 독립변수로 선택하여 분석에 활용하기로 결정하였습니다. <br>
