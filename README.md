@@ -237,7 +237,7 @@ VIF 분석을 통해 다중공선성이 없음을 확인하였습니다.
     <td class="tg-y698">GradientBoost</td>
     <td class="tg-c6of">0.987</td>
     <td class="tg-c6of">0.131</td>
-    <td class="tg-c6of">train/test</td>
+    <td class="tg-c6of">train/test (train의r² : 0.999)</td>
   </tr>
   <tr>
     <td class="tg-y698">Polynomial Regression</td>
@@ -259,33 +259,40 @@ VIF 분석을 통해 다중공선성이 없음을 확인하였습니다.
   </tr>
   <tr>
     <td class="tg-y698">RandomForest</td>
-    <td class="tg-c6of">0.983</td>
-    <td class="tg-c6of">0.146</td>
-    <td class="tg-c6of">cross_validation (cv=10)</td>
+    <td class="tg-c6of">0.713</td>
+    <td class="tg-c6of">0.586</td>
+    <td class="tg-c6of">train/test</td>
   </tr>
 </tbody>
 </table>
 
-👉 성능 평가가 높은 `GradientBoost`와 `RandomForest`는 overfiting의 양상이 보였으므로 최종 모델은 `Ridge Polynomial Regression` 으로 선정
+👉 가장 성능 평가가 높은 `GradientBoost`는 overfiting의 양상이 보였으므로(cross validation에서의 r²값은 0이하) 최종 모델은 `Ridge Polynomial Regression` 으로 선정
 <br>
 <br>
 
 ### ✔️ 결과 해석
-<p align="center"><img src=https://github.com/yelimkong/depression-analysis/assets/48948604/5a0626d3-a6cc-4248-bb6a-d9457f8e963a></p>
+<p align="center"><img src=https://github.com/yelimkong/depression-analysis/assets/131862831/744fc37e-2241-49cc-a2e9-8ca9afe1ba7b></p>
+
 <br>
 
 #### 
-그래프를 보았을 때 ridge penalty가 1일때 가장 낮은 RMSE값과 가장 높은 R²값을 보였습니다. 또한, cross validation 진행시 cv값을 5와 10으로 조정하였고 그 결과 cv값이 10일 때 더 좋은 성능을 확인할 수 있었습니다. 결론적으로 cv값은 10, ridge penalty 1로 모델 성능 평가를 최종적으로 선정하였습니다.
+그래프를 보았을 때 ridge penalty가 1일때 가장 낮은 RMSE값과 가장 높은 R²값을 보였습니다. 또한,  cv값을 5와 10으로 조정하여 cross validation 진행하였고 그 결과 cv값이 10일 때 더 좋은 성능을 확인할 수 있었습니다. 
+결론적으로 cv값은 10, ridge penalty 1로 모델 성능 평가를 최종적으로 선정하였습니다.
 <br>
 
+<p align="center"><img src=https://github.com/yelimkong/depression-analysis/assets/131862831/c120c433-3a70-4600-9c6e-42cdcd74f998></p>
 
-<p align="center"><img src=https://github.com/yelimkong/depression-analysis/assets/48948604/325a6b32-3c07-4a89-bd8f-34a3a7e8e01a></p>
 <br>
-잔차의 등분산성 그래프를 그려보았을때, 잔차 플롯에서 어느 정도 0 주변에서 관측 되는, 기울기가 0인 빨간 선을 확인하였습니다. 이 중 0에서 많이 벗어나는 몇몇의 데이터가 보이지만 이상치로 판단하였고(실제 데이터에서 제거되지 않은 이상치)  0을 중심으로 특정한 패턴을 가지고 있지 않음을 확인할 수 있으며 잔차가 0을 중심으로 크게 벗어나지 않음을 확인할 수 있습니다.
+잔차의 등분산성 그래프(왼쪽)를 보았을때, 잔차 플롯에서 어느 정도 0 주변에서 관측 되는, 기울기가 0인 빨간 선을 확인하였습니다. 이 중 0에서 많이 벗어나는 몇몇의 데이터가 보이지만 이상치로 판단하였고(실제 데이터에서 제거되지 않은 이상치)  0을 중심으로 특정한 패턴을 가지고 있지 않음을 확인할 수 있으며 잔차가 0을 중심으로 크게 벗어나지 않음을 확인할 수 있습니다.
+
+잔차의 Q-Q(Quantile-Quantile)플롯(오른쪽) 보았을때, 데이터의 대부분은 빨간색 선 주변에 잘 위치해 있어 중앙 부분에서는 정규분포를 잘 따르는 것처럼 보입니다. 그러나 양쪽 끝에서는 점들이 선에서 벗어나는 것을 볼 수 있습니다. 이는 앞 경우와 마찬가지로 이상치로 판단할 수 있습니다.
 <br>
 
 ## ✔️ 결론
-
+지난 5년간의 전반적인 우울증 수치는 증가하였습니다.
+이에 보건복지부에서는 지난 12월 정신건강 증진을 위해 100만 명 대상을 목표로 전문 심리상담을 지원 등을 포함한 4대 전략을 추진할 것이라 발표하였습니다. 이러한 다양한 정책을 바탕으로 저희는 우리나라의 우울증 수치를 낮추는 데 기여할 수 있는 정책에 대해 고민하였습니다.
+최근 어린이 돌봄의 중요성이 부각되면서 등하굣길에서 어린이와 함께하는 어른이 필요한 경우가 많아지고 있습니다. 해당 부분에 대한 일자리 창출을 통해 우울증 환자를 포함한 다양한 사람들에게 사회 활동 기회를 제공할 것을 제안합니다. 사회 활동과 고용률을 제고가 우울증 수치를 완화 시키는 데 도움이 될 것으로 판단했기 때문입니다.
+이러한 정책과 저희가 제안한 노력이 함께 이루어짐으로써 우리 사회는 더욱 건강하고 안정된 환경으로 발전할 것으로 기대됩니다.
 <br>
 
 ## ✔️ 한계점
