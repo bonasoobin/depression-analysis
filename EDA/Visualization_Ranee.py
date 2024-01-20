@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 
 final = pd.read_csv(r'C:\Users\MSI\Desktop\depression-project\Ranee\0_Data\final.csv', encoding='ANSI')
 final.info()
-# final['우울증지수'] = round((final['우울증환자수']/final['총인구수'])*100, 2) 
 final.columns = ['city','neighborhood','citynum','year','patient','age','population','stress','employment','covid','budget','public facilities','depression']
 
 year = [str(i) for i in final['year']]
