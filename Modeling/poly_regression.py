@@ -23,15 +23,15 @@ robust_scaler = RobustScaler()
 X_train, X_test , y_train , y_test = train_test_split(X,y, test_size = 0.3, random_state=123)  
 X_train_robust = robust_scaler.fit_transform(X_train)
 X_test_robust = robust_scaler.fit_transform(X_test)
-
-
+y_train = robust_scaler.fit_transform(y_train)
+y_test = robust_scaler.fit_transform(y_test)
 # train_test_split 사용하여 모델 성능 평가
 def poly_regression(num) :
     
     poly = PolynomialFeatures(degree=num)
     # deg차 다항식으로 변환한 결과를 반환, 
     # 결과는 NumPy 배열 형태이며, 각 행은 샘플 각 열은 다항식 항을 나타냄
-    # 각 독립 변수마다 1차 및 2차 항이 생성되고, 이들을 모두 합치면 총 165개의 다항식 항이 생성 ---------> ??????
+    # 각 독립 변수마다 1차 및 2차 항이 생성되고, 이들을 모두 합치면 총 45개의 다항식 항이 생성 ---------> ??????
     X_train_poly = poly.fit_transform(X_train_robust) # 훈련 데이터에 대해 PolynomialFeatures 적용
     X_test_poly = poly.transform(X_test_robust) # 테스트 데이터에 대해 훈련 데이터에서 학습한 변환을 적용
 
@@ -99,9 +99,10 @@ def cross_poly_regression(num) :
     # rmse
     cv_rmse = cross_val_score(model, X_poly, y, cv=10,
                                      scoring='neg_mean_squared_error')
-    cv_rmse = np.sqrt(-cv_rmse) # 음수의 평균 제곱 오차를 양수로 변환    
-                                        # 각 폴드에서의 예측값과 실제값 간의 차이
-                                        # 교차검증은 데이터를 여러 폴드로 나누고 각 폴드를 한 번씩 테스트 데이터로 사용하여 모델을 여러 번 평가하는 과정 
+     # 교차검증은 값이 높을 수록 좋은 모델 그러나, MSE 적을 수록 좋은 모델 -> -MSE 값을 scoring으로 넣는다면 잔차가 작아질수록 교차검증값은 커진다
+    cv_rmse = np.sqrt(-cv_rmse) # 음수의 평균 제곱 오차를 양수로 변환 -> 음수이므로 제곱근을 하려면 음수를 또 붙여야함   
+                                    # 각 폴드에서의 예측값과 실제값 간의 차이
+                                # 교차검증은 데이터를 여러 폴드로 나누고 각 폴드를 한 번씩 테스트 데이터로 사용하여 모델을 여러 번 평가하는 과정 
     avg_cv_rmse = np.mean(cv_rmse)
     std_cv_rmse = np.std(cv_rmse)
 

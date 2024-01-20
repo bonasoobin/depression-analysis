@@ -98,14 +98,22 @@ plt.show()
 plt.savefig("우울증수치와 각 독립변수 별 산점도 확인")
 
 
+import matplotlib.font_manager as fm
+font_path = r"C:/Windows/Fonts/H2GTRE.ttf"
+
+font_prop = fm.FontProperties(fname=font_path, size=10)
+plt.rcParams['font.family'] = font_prop.get_name()
+
 # 이상치 확인
 def cheak_eda(name) :
-    plt.figure(figsize=(10,20))
+    plt.figure(figsize=(10,20), linewidth=2)
     box = final.boxplot(column=[f"{name}"])
+    plt.xticks(fontsize=50, fontweight='bold')
+    plt.yticks(fontsize=20,  fontweight='bold')
     plt.savefig(f"{name}의 boxplot.png")
     plt.close()
 
-cheak_eda('patient')
+cheak_eda('age')
 
 index_name = ['age','population','stress','employment','covid','budget','public facilities','depression','patient']
 for i in index_name :
