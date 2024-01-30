@@ -169,15 +169,6 @@ raw 데이터에서 변수별 히스토그램을 그려보았을 때, 스트레�
 <br>
 <br>
 
-<p align="center"><img src="https://github.com/yelimkong/depression-analysis/assets/48948604/e8dbbf60-8ee8-422f-bc04-e3a5351013b4"></p>
-코로나 확진자 수는 해마다 증가하였고, 공공시설개수는 누적 데이터이므로 자가상관관계가 있을거라고 추측하였습니다.   <br>
-실제로 결과 그래프들을 보면 다른 데이터들 보다는 자가상관관계가 있는걸로 나타내어지나, 그 계수가 0.2로 아주 약한 상관관계를 보이므로 다른 변수와 동일하게 각 데이터들을 독립적인 데이터로 보아도 무관하다고 판단하였습니다.  <br>
-따라서 이후 년도 변수를 삭제하였습니다.
-
-<br>
-<br>
-<br>
-
 <table class="tg">
 <thead>
   <tr>
@@ -222,7 +213,23 @@ raw 데이터에서 변수별 히스토그램을 그려보았을 때, 스트레�
 </table>
 VIF 분석을 통해 다중공선성이 없음을 확인하였습니다.
 <br>
+<br>
+<br>
+<br>
 
+<p align="center"><img src="https://github.com/yelimkong/depression-analysis/assets/48948604/74b45506-a71b-48fa-9a32-29b94ab1420a"></p>
+박스플롯을 확인한 결과, 이상치가 존재하지만 모두 필요한 값이기에 이상치에 민감하지 않은 RobustScaling 을 진행하였습니다.
+<br>
+<br>
+<br>
+<br>
+
+<p align="center"><img src="https://github.com/yelimkong/depression-analysis/assets/48948604/e8dbbf60-8ee8-422f-bc04-e3a5351013b4"></p>
+코로나 확진자 수는 해마다 증가하였고, 공공시설개수는 누적 데이터이므로 자가상관관계가 있을거라고 추측하였습니다.   <br>
+실제로 결과 그래프들을 보면 다른 데이터들 보다는 자가상관관계가 있는걸로 나타내어지나, 그 계수가 0.2로 아주 약한 상관관계를 보이므로 다른 변수와 동일하게 각 데이터들을 독립적인 데이터로 보아도 무관하다고 판단하였습니다.  <br>
+따라서 이후 년도 변수를 삭제하였습니다.
+
+<br>
 <br>
 <br>
 
